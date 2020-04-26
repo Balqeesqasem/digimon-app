@@ -62,9 +62,9 @@ function showDetail(req,res){
     let SQL = 'SELECT * FROM exam WHERE id=$1;';
     let safeValue = [name,img,level,Number(req.params.id)];
     return client.query(SQL,safeValue)
-    .then(() =>{
-        //Console.log(data.rows[0]);
-        res.render('detail',{myData:data.rows[0]})
+    .then(data =>{
+        Console.log(data.rows[0]);
+        res.render(`detail/${req.params.id}`,{myData:data.rows[0]})
     })
 }
 
@@ -74,7 +74,7 @@ function updateData(req,res){
     let safeValue = [name,img,level,Number(req.params.id)];
     return client.query(SQL,safeValue)
     .then(() =>{
-        res.render(`detail/${req.params.id}`)
+        res.redirect('/myfaver');
     })
 }
 
@@ -96,7 +96,7 @@ function searchOfData(req,res){
       })
 }
 
-function  getFromApiSearch(searchthing){
+function getFromApiSearch(searchthing){
    
     let url =`https://digimon-api.herokuapp.com/api/digimon/name/${searchthing}`;
     return superagent(url)
