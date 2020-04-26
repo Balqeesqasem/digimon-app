@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 app.get('/', getAllData);
 app.post('/addTofaveret', addDataToDb);
 app.get('/myfaver', tackDataFromDb);
+app.get('/search', searchOfData);
 app.get('/detail/:id', showDetail );
 app.put('/update/:id', updateData);
 app.delete('/delete/:id', deleteData);
@@ -85,6 +86,26 @@ function deleteData(req,res){
         res.redirect('/myfaver');
     })
 }
+
+function searchOfData(req,res){
+    let searchthing = req.query.search;
+    getFromApiSearch(searchthing)
+    .then( data => {
+        res.render('index',{myData:data})
+          
+      })
+}
+
+function  getFromApiSearch(searchthing){
+   
+    let url =`https://digimon-api.herokuapp.com/api/digimon/name/${searchthing}`;
+    return superagent(url)
+    .then(data =>{
+       return data.body.map(val =>{
+        return new Pokemon(val);
+    })
+})}
+
 
 function Pokemon(data){
     this.name=data.name;
