@@ -7,15 +7,21 @@
 </head>
 <body>
     <main>
+
+<form action="/search">
+    <input type="text" name="search" >
+    <button>SEARCH!</button>
+</form>
+
 <div>
 <%myData.forEach(val => {%>
     <p><%=val.name%></p>
 <img src="<%=val.img%>" alt="">
 <p><%=val.level%></p>
 <form action="/addTofaveret" method="post">
-<input type="text" name="name" value="<%=val.name%>">
-<input type="text" name="img" value="<%=val.img%>">
-<input type="text" name="level" value="<%=val.level%>">
+<input class="hide" type="text" name="name" value="<%=val.name%>">
+<input class="hide" type="text" name="img" value="<%=val.img%>">
+<input  class="hide" type="text" name="level" value="<%=val.level%>">
     <button>ADD TO FAV!</button>
 </form>
 <%})%>
@@ -23,9 +29,9 @@
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
     <script >
-$('input').hide();
+$('.hide').hide();
 $('button').on('click', function(){
-    $('input').toggle();
+    $('.hide').toggle();
 })
 
     </script>
