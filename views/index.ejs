@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+<div>
+<%myData.forEach(val => {%>
+    <p><%=val.name%></p>
+<img src="<%=val.img%>" alt="">
+<p><%=val.level%></p>
+<form action="/addTofaveret" method="post">
+<input type="text" name="name" value="<%=val.name%>">
+<input type="text" name="img" value="<%=val.img%>">
+<input type="text" name="level" value="<%=val.level%>">
+    <button>ADD TO FAV!</button>
+</form>
+<%})%>
+</div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script >
+$('input').hide();
+$('button').on('click', function(){
+    $('input').toggle();
+})
+
+    </script>
+</body>
+</html>

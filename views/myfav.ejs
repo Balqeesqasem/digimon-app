@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <%myData.forEach(val => {%>
+            <p><%=val.name%></p>
+        <img src="<%=val.img%>" alt="">
+        <p><%=val.level%></p>
+        <form action="/detail/<%=val.id%>" >
+            <button>Details</button>
+        </form>
+        <%})%>
+    </main>
+</body>
+</html>
